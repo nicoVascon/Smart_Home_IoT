@@ -2,6 +2,13 @@
 
 #define PIN_GAS 34
 
+#define VREF_PLUS 3.3
+#define VREF_MINUS 0.0
+#define ADC_RESOLUTION 4096.0
+
+int analog_value = 0;
+float analog_voltage = 0;
+
 //-------------------------------BUZZER-------------------------------
 int buzzer = 33;  //set digital IO pin of the buzzer
 String buzz_type;
@@ -19,6 +26,9 @@ String flame_val="0";
 
 
 void setup() {
+
+  Serial.begin(9600);
+  while(!Serial){}
 
   pinMode(buzzer, OUTPUT);  // set digital IO pin pattern, OUTPUT to be output
   buzz_val = "0";
@@ -43,13 +53,13 @@ void loop() {
 
 
 
-  for (i = 0; i < 80; i++) {     // output a frequency sound
+  for (int i = 0; i < 80; i++) {     // output a frequency sound
     digitalWrite(buzzer, HIGH);  // sound
     delay(1);                    //delay1ms
     digitalWrite(buzzer, LOW);   //not sound
     delay(1);                    //ms delay
   }
-  for (i = 0; i < 100; i++)  // output a frequency sound
+  for (int i = 0; i < 100; i++)  // output a frequency sound
   {
     digitalWrite(buzzer, HIGH);  // sound
     digitalWrite(buzzer, LOW);   //not sound
@@ -57,7 +67,7 @@ void loop() {
   }
 
   //----------------FLAME SENSOR-------------------------------
-  //flame_type="DIGITAL_INPUT";
+  flame_type="DIGITAL_INPUT";
   flame_type = "DI";
   StateFlame = digitalRead(flamePin);
   Serial.print("(FLAME SENSOR)");
