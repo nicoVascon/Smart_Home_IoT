@@ -1,6 +1,6 @@
 #include "Arduino.h"
 
-#define PIN_GAS 34
+
 
 #define VREF_PLUS 3.3
 #define VREF_MINUS 0.0
@@ -10,11 +10,12 @@ int analog_value = 0;
 float analog_voltage = 0;
 
 //-------------------------------BUZZER-------------------------------
-int buzzer = 33;  //set digital IO pin of the buzzer
+int buzzer = 18;  //set digital IO pin of the buzzer
 String buzz_type;
 String buzz_val = "0";
 String buzz_activ_temp = "0";
 //-------------------------------GAS-------------------------------
+#define PIN_GAS 34
 String gas_type;
 String gas_val = "0";
 //-------------------------------FLAME SENSOR-------------------------
